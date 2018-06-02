@@ -1,32 +1,21 @@
-# -*- coding: utf-8 -*-
 from tkinter import *
 import serial
 import math
 
 class Paint(object):
-
     DEFAULT_PEN_SIZE = 5.0
     DEFAULT_COLOR = 'black'
     SCREEN_W=300
     SCREEN_H=300
     
-    
-    
-
     def __init__(self):
-        
-        #master : Main window containing widgets
     
         self.init_widgets()
-
 
         self.setup()
         self.master.mainloop()
 
-
-
         
-
     def init_widgets(self):
         self.master = Tk()
         
@@ -56,7 +45,7 @@ class Paint(object):
         self.test_button = Button(self.master, text='send',command = self.send)
         self.test_button.grid(row = 0, column = 6)
 
-
+        
          #debug
         self.ux = Button(self.master, text='up x',command = self.ux)
         self.ux.grid(row=0,column= 7)
@@ -67,7 +56,6 @@ class Paint(object):
         self.dy = Button(self.master, text='down y',command = self.dy)
         self.dy.grid(row=0,column= 10)
 
-
         self.menubar = Menu(self.master)
         self.menu1 = Menu(self.menubar, tearoff=0)
         self.menu1.add_command(label="Nouveau", command=self.alert)
@@ -77,7 +65,6 @@ class Paint(object):
         self.menubar.add_cascade(label="Fichier", menu=self.menu1)
         self.menu2 = Menu(self.menubar, tearoff=0)
         self.menu2.add_command(label="Undo", command = lambda : self.undo(event=None))
-        
         
         self.menu2.add_command(label="Redo", command=self.alert)
         self.menubar.add_cascade(label="Editer", menu=self.menu2)
@@ -103,7 +90,6 @@ class Paint(object):
                 
         self.tool_option = 'line'
 
-        
         self.Line_objects = []
         self.Circle_objects = []
         self.Point_objects = []
@@ -112,7 +98,6 @@ class Paint(object):
 
         self.com_port = 'COM15'
 
-        
         self.draw_zone.bind('<Button-1>', self.draw_start)
         self.draw_zone.bind('<B1-Motion>',self.draw_motion)
         self.draw_zone.bind('<ButtonRelease-1>',self.draw_end)
@@ -132,9 +117,7 @@ class Paint(object):
                 self.arc_start1(event)
             else:
                 self.arc_start2(event)
-                             
-        
-            
+                                         
     def draw_motion(self,event):
         if self.tool_option=='line':
             self.line_motion(event)
@@ -145,8 +128,7 @@ class Paint(object):
                 self.arc_motion1(event)
             else:
                 self.arc_motion2(event)
-
-            
+          
     def draw_end(self,event):
         if self.tool_option=='line':
             self.line_end(event)
@@ -158,9 +140,6 @@ class Paint(object):
             else:
                 self.arc_end2(event)             
 
-
-        
-            
 
 #draw_line Methods
         
@@ -187,7 +166,6 @@ class Paint(object):
         self.draw_zone.create_oval((self.circle_start_x),(self.circle_start_y),event.x,
                                    (abs(event.x-self.circle_start_x)+self.circle_start_y) if (event.y>self.circle_start_y) else  (self.circle_start_y-abs(event.x-self.circle_start_x))
                                                                                                                                   )
-
     def circle_end(self,event):
         self.draw_zone.delete('temp_circle_objects')
 
@@ -199,6 +177,7 @@ class Paint(object):
 
         
 #draw point Methods
+
     def point_start(self,event):
         x = self.draw_zone.create_line(event.x,event.y,event.x+1,event.y+1)
         self.Point_objects.append(x)
@@ -246,20 +225,12 @@ class Paint(object):
        
     def arc_end2(self,event):
        self.arc_first_click = 0
-       
-       
-        
-        
         
         
 #tool setters
+
     def set_tool(self,shape):
          self.tool_option = shape
-
-
-
-            
-
 
     def undo(self,event):
         if not self.stack:
@@ -272,16 +243,10 @@ class Paint(object):
             x1,y1,x2,y2 = self.draw_zone.coords(self.Line_objects[i])
             print(x1,y1,x2,y2)
 
-            
-
-
-
     def connect_port(self):
         self.com_port = self.com_input.get()
         self.ser = serial.Serial(self.com_port,9600)
         
-        
-
     def alert(self):
         print('yo')
 
@@ -298,7 +263,6 @@ class Paint(object):
     def ux(self):
         while (not(self.ser.writable())):
             pass
-        #self.ser.writelines('f\n'.encode('utf-8'))
         a=self.ser.write('f'.encode('utf-8'))
         b=self.ser.write('\n'.encode('utf-8'))
         print(a)
@@ -325,12 +289,6 @@ class Paint(object):
         print(a)
         print(b)
         
-            
-            
-            
-            
-
-
 
 if __name__ == '__main__':
     ge = Paint()
