@@ -21,3 +21,9 @@ The program in the STM32 is written in C++ language. In order to get the binary 
 After hitting the **compile** button, a .bin file is generated and downloaded. you need to place this file in the flash memory of the microprocessor.
 
 The main.cpp code is under MPross folder. This can be imported to the Mbed compiler or can written manually.
+
+## Graphical Unit Interface
+
+A GUI program was written in python using the TKinter library. The program contains a workspace for drawing geometric shapes and a button allowing you to comunicate to your controller via USB.
+
+You need for this application python 3.6.
