@@ -563,220 +563,252 @@ oct4: while ((sqr(x)!=r2) && (y!=0))
           goto stop;
       }
   
-oct5:  while(x!=y){
+oct5: while(x!=y)
+      {
         int e1=sqr(x)+sqr(y-1)-r2;
         int e2=sqr(x+1)+sqr(y-1)-r2;
-        if (e1<=e2) {
-            y--;
-            stepy(-1);
-            wait(m);
+        if (e1<=e2)
+        {
+          y--;
+          stepy(-1);
+          wait(m);
         }
-        else {
-            y--;
-            x++;
-            stepy(-1);
-            stepx(1);
-            wait(m);
+        else
+        {
+          y--;
+          x++;
+          stepy(-1);
+          stepx(1);
+          wait(m);
         }
-        if ((x==xf) && (y==yf)) {goto stop;}
-
-  }
-  //
-oct6:  while ((sqr(y)!=r2) && (x!=0)){
+        if ((x==xf) && (y==yf))
+          goto stop;
+      }
+  
+oct6: while ((sqr(y)!=r2) && (x!=0))
+      {
         int e1=sqr(x+1)+sqr(y)-r2;
         int e2=sqr(x+1)+sqr(y-1)-r2;
-        if (e1<=e2) {
-            x++;
-            stepx(1);
-            wait(m);
+        if (e1<=e2)
+        {
+          x++;
+          stepx(1);
+          wait(m);
         }
-        else {
-            y--;
-            x++;
-            stepy(-1);
-            stepx(1);
-            wait(m);
+        else
+        {
+          y--;
+          x++;
+          stepy(-1);
+          stepx(1);
+          wait(m);
         }
-        if ((x==xf) && (y==yf)) {goto stop;}
-
-  }
-  //
-oct7:  while(x!=-y){
+        if ((x==xf) && (y==yf))
+          goto stop;
+      }
+  
+oct7: while(x!=-y)
+      {
         int e1=sqr(x+1)+sqr(y)-r2;
         int e2=sqr(x+1)+sqr(y+1)-r2;
-        if (e1<=e2) {
-            x++;
-            stepx(1);
-            wait(m);
+        if (e1<=e2)
+        {
+          x++;
+          stepx(1);
+          wait(m);
         }
-        else {
-            y++;
-            x++;
-            stepy(1);
-            stepx(1);
-            wait(m);
+        else
+        {
+          y++;
+          x++;
+          stepy(1);
+          stepx(1);
+          wait(m);
         }
-        if ((x==xf) && (y==yf)) {goto stop;}
-
-  }
-  //
-oct8:  while ((sqr(x)!=r2) && (y!=0)){
+        if ((x==xf) && (y==yf))
+          goto stop;
+      }
+  
+oct8: while ((sqr(x)!=r2) && (y!=0))
+      {
         int e1=sqr(x)+sqr(y+1)-r2;
         int e2=sqr(x+1)+sqr(y+1)-r2;
-        if (e1<=e2) {
-            y++;
-            stepy(1);
-            wait(m);
+        if (e1<=e2)
+        {
+          y++;
+          stepy(1);
+          wait(m);
         }
-        else {
-            y++;
-            x++;
-            stepy(1);
-            stepx(1);
-            wait(m);
+        else
+        {
+          y++;
+          x++;
+          stepy(1);
+          stepx(1);
+          wait(m);
         }
-        if ((x==xf) && (y==yf)) {goto stop;}
+        if ((x==xf) && (y==yf))
+          goto stop;
+      }
 
-  }
-goto oct1;
-
-
-stop:
+  goto oct1;
+  stop:
     //stop
-
-
-
 }
 
-
-void up_z() {
-    for(int i=0;i<300;i++) {stepz(1); wait(m);}
-// up z
+void up_z()
+{
+  for(int i=0;i<300;i++)
+  {
+    stepz(1);
+    wait(m);
+  }
 }
 
-void down_z() {
-// down z
-for(int i=0;i<300;i++) {stepz(-1); wait(m);}
+void down_z()
+{
+  for(int i=0;i<300;i++)
+  {
+    stepz(-1);
+    wait(m);
+  }
 }
 
-
- void go_origin() {
-
- }
-
-
-void update(unsigned int x,unsigned int y,unsigned int z) {
-X=x;
-Y=y;
-Z=z;
+void go_origin()
+{
+  //working on it
 }
 
-
-
-void init() {
-    go_origin();
-    release();
-
-    X=0;
-    Y=0;
-    Z=0;
-
+void update(unsigned int x,unsigned int y,unsigned int z)
+{
+  X=x;
+  Y=y;
+  Z=z;
 }
 
+void init()
+{
+  go_origin();
+  release();
 
+  X=0;
+  Y=0;
+  Z=0;
+}
 
+int parseint(char **buffer)
+{
+  int x=atoi(*buffer);
+  int a=strlen(*buffer);
+  int b=strlen(strchr(*buffer,' '));
+  *buffer=*buffer+a-b+1;
+  return x;
+}
 
-
-
-int parseint(char **buffer) {
+void interpret(string buffer)
+{
+  char k=buffer.at(0);
+  buffer.erase(0,2);
     
-//cout <<strchr(*buffer,' ')<< endl;
-int x=atoi(*buffer);
-int a=strlen(*buffer);
-int b=strlen(strchr(*buffer,' '));
-*buffer=*buffer+a-b+1;
-//cout << *buffer<< endl;
-return x;
+  char *ch;
+  ch=(char*)buffer.c_str();
 
-
-}
-
-
-void interpret(string buffer) {
-    char k=buffer.at(0);
-    buffer.erase(0,2);
-    
-    char *ch;
-    ch=(char*)buffer.c_str();
-    
-    
-         
-         
-    
-switch (k) {
-    case 'L' : {
-                 // L 256 180 623 123
-            
-                 int x1=parseint(&ch);
-                 int y1=parseint(&ch);
-                 int x2=parseint(&ch);
-                 int y2=parseint(&ch);
+  switch (k)
+  {
+    case 'L' :
+      {
+        int x1=parseint(&ch);
+        int y1=parseint(&ch);
+        int x2=parseint(&ch);
+        int y2=parseint(&ch);
                  
-                 if (Z) {up_z(); release(); update(X,Y,0);}
+        if (Z)
+        {
+          up_z();
+          release();
+          update(X,Y,0);
+        }
                  
-                 Line(X,Y,x1,y1);
+        Line(X,Y,x1,y1);
                  
-                 update(x1,y1,Z);
-                 down_z();
-                 update(X,Y,1);
-                 release();
-                 
-                 Line(x1,y1,x2,y2);
-                 update(x2,y2,1);
-                 up_z();
-                 release();
-                 update(x2,y2,0);
-                 break;
-                  } 
-    case 'C' : {
-                // C 100 100 20
-                int cx=parseint(&ch);
-                int cy=parseint(&ch);
-                int r=parseint(&ch);
-                if (Z) {up_z(); release();}
-                //Line(X,Y,cx+r,cy);
-                release();
-                down_z();
-                Circle(cx,cy,r);
-                release();
-                up_z();
-                release();
-                update(cx+r,cy,0);
-                break;
-                  } 
-    case 'P' : { break;
-
-                  } 
-    case 'A' : {
-                  break;
-                  } 
-    case 'f' : {
-                for(int i=0;i<2000;i++) {stepx(1); wait(m);}
-                 release(); 
-                 //ser.putc('m');
-                 break;
-                 } 
+        update(x1,y1,Z);
+        down_z();
+        update(X,Y,1);
+        release();
         
-    case 'g' : {
-                for(int i=0;i<2000;i++) {stepx(-1); wait(m);}
-                 release(); 
-                 break;
-                 } 
-    case 'h' : {
-                for(int i=0;i<4000;i++) {stepy(1); wait(m);}
-                 release();
-                 break;
-                  } 
+        Line(x1,y1,x2,y2);
+        update(x2,y2,1);
+        up_z();
+        release();
+        update(x2,y2,0);
+        break;
+      } 
+    
+    case 'C' :
+      {
+        int cx=parseint(&ch);
+        int cy=parseint(&ch);
+        int r=parseint(&ch);
+        
+        if (Z)
+        {
+          up_z();
+          release();
+        }
+        
+        release();
+        down_z();
+        Circle(cx,cy,r);
+        release();
+        up_z();
+        release();
+        update(cx+r,cy,0);
+        break;
+      } 
+    
+    case 'P' :
+      {
+        break;
+      } 
+    
+    case 'A' : 
+      {
+        break;
+      }
+      
+    case 'f' :
+      {
+        for(int i=0;i<2000;i++)
+        {
+          stepx(1);
+          wait(m);
+        }
+        release(); 
+        break;
+      } 
+        
+    case 'g' :
+      {
+        for(int i=0;i<2000;i++)
+        {
+          stepx(-1);
+          wait(m);
+        }
+        release(); 
+        break;
+      } 
+    
+    case 'h' :
+      {
+        for(int i=0;i<4000;i++)
+        {
+          stepy(1);
+          wait(m);
+        }
+        release();
+        break;
+      } 
+    
     case 'j' : {
                 for(int i=0;i<4000;i++) {stepy(-1); wait(m);}
                  release();
