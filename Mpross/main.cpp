@@ -307,251 +307,262 @@ void Circle(int centerx,int centery,int r)
     release();
   }
   
-  //
-  while (y!=0){
-        int e1=abs(sqr(x)+sqr(y-1)-sqr(scaledr));
-        int e2=abs(sqr(x-1)+sqr(y-1)-sqr(scaledr));
-        if (e1<=e2) {
-            y--;
-            stepy(-1);
-            wait(m);
-        }
-        else {
-            y--;
-            x--;
-            stepy(-1);
-            stepx(-1);
-            wait(m);
-            release();
-        }
-        release();
-
-  }
-  //
-  while(x<y){
-        int e1=abs(sqr(x)+sqr(y-1)-sqr(scaledr));
-        int e2=abs(sqr(x+1)+sqr(y-1)-sqr(scaledr));
-        if (e1<=e2) {
-            y--;
-            stepy(-1);
-            wait(m);
-        }
-        else {
-            y--;
-            x++;
-            stepy(-1);
-            stepx(1);
-            wait(m);
-            release();
-        }
-        release();
-
-  }
-  //
-  while (x!=0){
-        int e1=abs(sqr(x+1)+sqr(y)-sqr(scaledr));
-        int e2=abs(sqr(x+1)+sqr(y-1)-sqr(scaledr));
-        if (e1<=e2) {
-            x++;
-            stepx(1);
-            wait(m);
-        }
-        else {
-            y--;
-            x++;
-            stepy(-1);
-            stepx(1);
-            wait(m);
-            release();
-        }
-        release();
-
-  }
-  //
-  while(x<-y){
-        int e1=abs(sqr(x+1)+sqr(y)-sqr(scaledr));
-        int e2=abs(sqr(x+1)+sqr(y+1)-sqr(scaledr));
-        if (e1<=e2) {
-            x++;
-            stepx(1);
-            wait(m);
-            
-        }
-        else {
-            y++;
-            x++;
-            stepy(1);
-            stepx(1);
-            wait(m);
-            release();
-        }
-        release();
-
-  }
-  //
-  while (y!=0){
-        int e1=abs(sqr(x)+sqr(y+1)-sqr(scaledr));
-        int e2=abs(sqr(x+1)+sqr(y+1)-sqr(scaledr));
-        if (e1<=e2) {
-            y++;
-            stepy(1);
-            wait(m);
-        }
-        else {
-            y++;
-            x++;
-            stepy(1);
-            stepx(1);
-            wait(m);
-            release();
-        }
+  while (y!=0)
+  {
+    int e1=abs(sqr(x)+sqr(y-1)-sqr(scaledr));
+    int e2=abs(sqr(x-1)+sqr(y-1)-sqr(scaledr));
+    if (e1<=e2)
+    {
+      y--;
+      stepy(-1);
+      wait(m);
+    }
+    else
+    {
+      y--;
+      x--;
+      stepy(-1);
+      stepx(-1);
+      wait(m);
+      release();
+    }
     release();
+  }
+  
+  while(x<y)
+  {
+    int e1=abs(sqr(x)+sqr(y-1)-sqr(scaledr));
+    int e2=abs(sqr(x+1)+sqr(y-1)-sqr(scaledr));
+    if (e1<=e2)
+    {
+      y--;
+      stepy(-1);
+      wait(m);
+    }
+    else
+    {
+      y--;
+      x++;
+      stepy(-1);
+      stepx(1);
+      wait(m);
+      release();
+    }
+    release();
+  }
+  
+  while (x!=0)
+  {
+    int e1=abs(sqr(x+1)+sqr(y)-sqr(scaledr));
+    int e2=abs(sqr(x+1)+sqr(y-1)-sqr(scaledr));
+    if (e1<=e2)
+    {
+      x++;
+      stepx(1);
+      wait(m);
+    }
+    else
+    {
+      y--;
+      x++;
+      stepy(-1);
+      stepx(1);
+      wait(m);
+      release();
+    }
+    release();
+  }
+  
+  while(x<-y)
+  {
+    int e1=abs(sqr(x+1)+sqr(y)-sqr(scaledr));
+    int e2=abs(sqr(x+1)+sqr(y+1)-sqr(scaledr));
+    if (e1<=e2)
+    {
+      x++;
+      stepx(1);
+      wait(m);
+    }
+    else
+    {
+      y++;
+      x++;
+      stepy(1);
+      stepx(1);
+      wait(m);
+      release();
+    }
+    release();
+  }
+  
+  while (y!=0)
+  {
+    int e1=abs(sqr(x)+sqr(y+1)-sqr(scaledr));
+    int e2=abs(sqr(x+1)+sqr(y+1)-sqr(scaledr));
+    if (e1<=e2)
+    {
+      y++;
+      stepy(1);
+      wait(m);
+    }
+    else
+    {
+      y++;
+      x++;
+      stepy(1);
+      stepx(1);
+      wait(m);
+      release();
+    }
+    release();
+  }
+}
 
+void Arc(int centerx,int centery,int x1,int y1,int x2,int y2)
+{
+  // goto (x1,y1)
+  int octant;
+  int x=x1-centerx;
+  int y=y1-centery;
+  int r2=sqr(x)+sqr(y);
+  int xf=x2-centerx;
+  int yf=y2-centery;
+  // determination of the starting octant
+  if (x1>centerx)
+  {
+    if (y1>centery)
+    {
+      if (sqr(x1-centerx)*2 > r2)
+        octant = 1;
+      else
+        octant = 2;
+    }
+    else
+    {
+      if (sqr(x1-centerx)*2 > r2)
+        octant = 8;
+      else
+        octant = 7;    
+    }
+  }
+  else
+  {
+    if (y1>centery)
+    {
+      if (sqr(x1-centerx)*2 > r2)
+        octant = 4;
+      else
+        octant = 3;
+    }
+    else
+    {
+      if (sqr(x1-centerx)*2 > r2)
+        octant = 5;
+      else
+        octant = 6;
+    }
   }
 
-
-
-
-}
-
-
-
-
-void Arc(int centerx,int centery,int x1,int y1,int x2,int y2){
-// goto (x1,y1)
-int octant;
-int x=x1-centerx;
-int y=y1-centery;
-int r2=sqr(x)+sqr(y);
-int xf=x2-centerx;
-int yf=y2-centery;
-// determination de l'octant de depart de l'arc
-if (x1>centerx) {
-    if (y1>centery)
-    {
-        if (sqr(x1-centerx)*2 > r2)
-            octant = 1;
-        else
-            octant = 2;
-    }
-    else
-    {
-        if (sqr(x1-centerx)*2 > r2)
-            octant = 8;
-        else
-            octant = 7;    
-    }
-}
-else
+switch (octant)
 {
-    if (y1>centery)
-    {
-        if (sqr(x1-centerx)*2 > r2)
-            octant = 4;
-        else
-            octant = 3;
-    }
-    else
-    {
-        if (sqr(x1-centerx)*2 > r2)
-            octant = 5;
-        else
-            octant = 6;
-    }
+  case 1 :  goto oct1;
+  case 2 :  goto oct2;
+  case 3 :  goto oct3;
+  case 4 :  goto oct4;
+  case 5 :  goto oct5;
+  case 6 :  goto oct6;
+  case 7 :  goto oct7;
+  case 8 :  goto oct8;
 }
 
-//
-switch (octant) {
-case 1 :  goto oct1;
-case 2 :  goto oct2;
-case 3 :  goto oct3;
-case 4 :  goto oct4;
-case 5 :  goto oct5;
-case 6 :  goto oct6;
-case 7 :  goto oct7;
-case 8 :  goto oct8;
-}
-
-
-
-oct1:     while(x!=y){
-       int e1=sqr(x)+sqr(y+1)-r2;
-       int e2=sqr(x-1)+sqr(y+1)-r2;
-        if (e1<=e2) {
-            y++;
-            stepy(1);
-            wait(m);
+oct1: while(x!=y)
+      {
+        int e1=sqr(x)+sqr(y+1)-r2;
+        int e2=sqr(x-1)+sqr(y+1)-r2;
+        if (e1<=e2)
+        {
+          y++;
+          stepy(1);
+          wait(m);
         }
-        else {
-            y++;
-            x--;
-            stepy(1);
-            stepx(-1);
-            wait(m);
+        else
+        {
+          y++;
+          x--;
+          stepy(1);
+          stepx(-1);
+          wait(m);
         }
-        if ((x==xf) && (y==yf)) {goto stop;}
-
-     }
-  //
-oct2:  while ((sqr(y)!=r2) && (x!=0)){
+        if ((x==xf) && (y==yf))
+          goto stop;
+      }
+  
+oct2: while ((sqr(y)!=r2) && (x!=0))
+      {
         int e1=sqr(x-1)+sqr(y)-r2;
         int e2=sqr(x-1)+sqr(y+1)-r2;
-        if (e1<=e2) {
-            x--;
-            stepx(-1);
-            wait(m);
+        if (e1<=e2)
+        {
+          x--;
+          stepx(-1);
+          wait(m);
         }
-        else {
-            y++;
-            x--;
-            stepy(1);
-            stepx(-1);
-            wait(m);
+        else
+        {
+          y++;
+          x--;
+          stepy(1);
+          stepx(-1);
+          wait(m);
         }
-        if ((x==xf) && (y==yf)) {goto stop;}
+        if ((x==xf) && (y==yf))
+          goto stop;
+      }
 
-
-  }
-
-  //
-oct3:  while(-x!=y){
+oct3: while(-x!=y)
+      {
         int e1=sqr(x-1)+sqr(y)-r2;
         int e2=sqr(x-1)+sqr(y-1)-r2;
-        if (e1<=e2) {
-            x--;
-            stepx(-1);
-            wait(m);
+        if (e1<=e2)
+        {
+          x--;
+          stepx(-1);
+          wait(m);
         }
-        else {
-            y--;
-            x--;
-            stepy(-1);
-            stepx(-1);
-            wait(m);
+        else
+        {
+          y--;
+          x--;
+          stepy(-1);
+          stepx(-1);
+          wait(m);
         }
-        if ((x==xf) && (y==yf)) {goto stop;}
-
-  }
-  //
-oct4:  while ((sqr(x)!=r2) && (y!=0)){
+        if ((x==xf) && (y==yf))
+          goto stop;
+      }
+ 
+oct4: while ((sqr(x)!=r2) && (y!=0))
+      {
         int e1=sqr(x)+sqr(y-1)-r2;
         int e2=sqr(x-1)+sqr(y-1)-r2;
-        if (e1<=e2) {
-            y--;
-            stepy(-1);
-            wait(m);
+        if (e1<=e2)
+        {
+          y--;
+          stepy(-1);
+          wait(m);
         }
-        else {
-            y--;
-            x--;
-            stepy(-1);
-            stepx(-1);
-            wait(m);
+        else
+        {
+          y--;
+          x--;
+          stepy(-1);
+          stepx(-1);
+          wait(m);
         }
-        if ((x==xf) && (y==yf)) {goto stop;}
-
-  }
-  //
+        if ((x==xf) && (y==yf))
+          goto stop;
+      }
+  
 oct5:  while(x!=y){
         int e1=sqr(x)+sqr(y-1)-r2;
         int e2=sqr(x+1)+sqr(y-1)-r2;
