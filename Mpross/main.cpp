@@ -234,74 +234,77 @@ void stepz(int dir)
   release();
 }
 
-void Circle(int centerx,int centery,int r) {
+void Circle(int centerx,int centery,int r)
+{
   // go (xcenter+r,centery)
   int scaledr=r*scale;
-  int x=scaledr; // a multiplier par 200 * scale
+  int x=scaledr;          // a multiplier par 200 * scale
   int y=0;
      
   // (r,0)
-    while(y<x)
+  while(y<x)
+  {
+    int e1=abs(sqr(x)+sqr(y+1)-sqr(scaledr));
+    int e2=abs(sqr(x-1)+sqr(y+1)-sqr(scaledr));
+    if (e1<=e2)
     {
-      int e1=abs(sqr(x)+sqr(y+1)-sqr(scaledr));
-      int e2=abs(sqr(x-1)+sqr(y+1)-sqr(scaledr));
-      if (e1<=e2) {
-        y++;
-        stepy(1);
-        wait(m);
-      }
-      else
-      {
-        y++;
-        x--;
-        stepy(1);
-        stepx(-1);
-        wait(m);
-        release();
-      }
+      y++;
+      stepy(1);
+      wait(m);
+    }
+    else
+    {
+      y++;
+      x--;
+      stepy(1);
+      stepx(-1);
+      wait(m);
       release();
     }
-  //
-    while (x!=0){
-       
-        int e1=abs(sqr(x-1)+sqr(y)-sqr(scaledr));
-        int e2=abs(sqr(x-1)+sqr(y+1)-sqr(scaledr));
-        if (e1<=e2) {
-            x--;
-            stepx(-1);
-            wait(m);
-        }
-        else {
-            y++;
-            x--;
-            stepy(1);
-            stepx(-1);
-            wait(m);
-            release();
-        }
-        release();
-
+    release();
   }
-  //
-  while(y>-x){
-        // myled=1;
-        int e1=abs(sqr(x-1)+sqr(y)-sqr(scaledr));
-        int e2=abs(sqr(x-1)+sqr(y-1)-sqr(scaledr));
-        if (e1<=e2) {
-            x--;
-            stepx(-1);
-            wait(m);
-        }
-        else {
-            y--;
-            x--;
-            stepy(-1);
-            stepx(-1);
-            wait(m);
-            release();
-        }
-        release();
-
+  
+  while (x!=0){
+    int e1=abs(sqr(x-1)+sqr(y)-sqr(scaledr));
+    int e2=abs(sqr(x-1)+sqr(y+1)-sqr(scaledr));
+    if (e1<=e2)
+    {
+      x--;
+      stepx(-1);
+      wait(m);
+    }
+    else
+    {
+      y++;
+      x--;
+      stepy(1);
+      stepx(-1);
+      wait(m);
+      release();
+    }
+    release();
+  }
+  
+  while(y>-x)
+  {
+    int e1=abs(sqr(x-1)+sqr(y)-sqr(scaledr));
+    int e2=abs(sqr(x-1)+sqr(y-1)-sqr(scaledr));
+    if (e1<=e2)
+    {
+      x--;
+      stepx(-1);
+      wait(m);
+    }
+    else
+    {
+      y--;
+      x--;
+      stepy(-1);
+      stepx(-1);
+      wait(m);
+      release();
+    }
+    release();
   }
   
   //
