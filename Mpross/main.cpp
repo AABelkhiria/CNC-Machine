@@ -809,52 +809,72 @@ void interpret(string buffer)
         break;
       } 
     
-    case 'j' : {
-                for(int i=0;i<4000;i++) {stepy(-1); wait(m);}
-                 release();
-                 break;
-                  } 
-    case 'k' : {
-                 for(int i=0;i<100;i++) {stepz(-1); wait(m);}
-                 release();
-                      break;}
-    case 'l' : {
-                      for(int i=0;i<100;i++) {stepz(1); wait(m);}
-                       release();
-                      break;}
-    case 'm' : {
-                      Circle(0,0,50);
-                      break;}
-    case 'w' : { Line(X,Y,0,0); release(); break;}
-     }
-
+    case 'j' :
+      {
+        for(int i=0;i<4000;i++)
+        {
+          stepy(-1);
+          wait(m);
+        }
+        release();
+        break;
+      } 
+    
+    case 'k' :
+      {
+        for(int i=0;i<100;i++)
+        {
+          stepz(-1);
+          wait(m);
+        }
+        release();
+        break;
+      }
+      
+    case 'l' :
+      {
+        for(int i=0;i<100;i++)
+        {
+          stepz(1);
+          wait(m);
+        }
+        release();
+        break;
+      }
+      
+    case 'm' :
+      {
+        Circle(0,0,50);
+        break;
+      }
+    
+    case 'w' :
+      {
+        Line(X,Y,0,0);
+        release();
+        break;
+      }
+  }
 }
 
-
-
-
- int main () {
-init();
-char c;
-buffer="";
-while(1)
+int main ()
+{
+  init();
+  char c;
+  buffer="";
+  while(1)
+  {
+    if (ser.readable())
     {
-        if (ser.readable()) {
-        c = ser.getc();
-        ser.putc(c);
-        buffer+=c;
-        if (c=='\n'){
+      c = ser.getc();
+      ser.putc(c);
+      buffer+=c;
+      if (c=='\n')
+      {
         interpret(buffer);
         buffer="";
         ser.putc('>'); //ready for next command
-
-       }
-
-
- }
- }
-
- }
-
-
-
+      }
+    }
+  }
+}
