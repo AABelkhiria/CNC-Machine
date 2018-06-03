@@ -1,8 +1,10 @@
+# CNC
+
 ![alt text][logo]
 
 [logo]: https://github.com/AABelkhiria/CNC/blob/master/Logo/Capture.bmp
 
-# CNC
+
 CNC-Machine on STM32 Nucleo F3.
 
 In this project, the program in the microprocessor is written in C++. The GUI in the computer is written in Python.
