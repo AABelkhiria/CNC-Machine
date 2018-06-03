@@ -1,3 +1,7 @@
+![alt text][logo]
+
+[logo]: https://github.com/AABelkhiria/CNC/blob/master/Logo/Capture.bmp
+
 # CNC
 CNC-Machine on STM32 Nucleo F3.
 
