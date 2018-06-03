@@ -50,3 +50,5 @@ An Assembly file also indicates how parts are pieced together.
 Using Proteus 8, an electronic design was made in the form of a mother board.
 The board contains a shield space for the STM32 F3 Nucleo.
 Also, the power section is made by 3 L298, 1 for each step motor.
+
+<a href="https://youtu.be/eADHYIyrXmQ" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
