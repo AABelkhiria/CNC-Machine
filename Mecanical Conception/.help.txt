@@ -1,0 +1,4 @@
+# Mecanical Conception
+
+This conception was made by Solidworks, containing all parts needed in the realization of the CNC-Machine.
+An Assembly file also indicates how parts are pieced together.
