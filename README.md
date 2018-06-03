@@ -51,4 +51,4 @@ Using Proteus 8, an electronic design was made in the form of a mother board.
 The board contains a shield space for the STM32 F3 Nucleo.
 Also, the power section is made by 3 L298, 1 for each step motor.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/eADHYIyrXmQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/eADHYIyrXmQ/0.jpg)](https://www.youtube.com/embed/eADHYIyrXmQ)
