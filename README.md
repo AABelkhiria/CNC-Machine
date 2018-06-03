@@ -28,5 +28,5 @@ A GUI program was written in python using the TKinter library. The program conta
 
 You need for this application python 3.6.
 
-⋅⋅* Another program written with python allows you to convert a DXF file done by 3D modeling software like Solidworks to a text file containing path of the end-effector.
-⋅⋅* A third program is made to build a connection between the PC and the controller via Serial communication.
+* Another program written with python allows you to convert a DXF file done by 3D modeling software like Solidworks to a text file containing path of the end-effector.
+* A third program is made to build a connection between the PC and the controller via Serial communication.
