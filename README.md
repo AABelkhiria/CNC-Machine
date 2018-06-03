@@ -39,3 +39,14 @@ You need for this application python 3.6.
 
 The program assuring the connection between the PC and the microprocessor.
 In fact, the program treats the contents of the file line by line.
+
+## Mecanical Conception
+
+This conception was made by Solidworks, containing all parts needed in the realization of the CNC-Machine.
+An Assembly file also indicates how parts are pieced together.
+
+## Electronic Conception
+
+Using Proteus 8, an electronic design was made in the form of a mother board.
+The board contains a shield space for the STM32 F3 Nucleo.
+Also, the power section is made by 3 L298, 1 for each step motor.
